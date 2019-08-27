@@ -38,7 +38,6 @@ app.post('/api/triggerpedido', async (req, res) => {
 	let currentUsuario = await db.getUsuario(_idUsuario);
 
 	console.log(currentUsuario);
-	// console.log(currentPedido);
 
 	let jsonResponse = {
 		message: "update-evidencias",
