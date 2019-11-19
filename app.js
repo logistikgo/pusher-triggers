@@ -1,6 +1,6 @@
 'use strict'
 const sql = require('mssql');
-const db = require('./db'); 
+const db = require('./config-db'); 
 const express = require('express');
 const bodyParser = require('body-parser');
 
