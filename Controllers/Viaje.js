@@ -1,15 +1,39 @@
-async function getViaje (idViaje) {
+'use strict'
+
+const Pusher = require('../config/pusher');
+const ViajeDB = require('../bd/viaje');
+const UsuarioDB = require('../bd/usuario');
+
+async function triggerViaje(req, res) {
+
+	let _idUsuario = parseInt(req.body.idusuario);
+	let _idViaje = req.body.idviaje;
+
 	try {
+		let currentViaje = await ViajeDB.get(_idViaje);
+		let currentUsuario = await UsuarioDB.get(_idUsuario);
 
-       	var _pool = await new sql.ConnectionPool(config).connect()
+		let jsonResponse = {
+			message: "update-status",
+			idviaje: _idViaje,
+			folio: currentViaje.Folio,
+			estatus: currentViaje.Status,
+			usuario: {
+				id: _idUsuario, nombre: currentUsuario.Nombre
+			}
+		}
 
-       	var _result = await _pool.query`select * from xd_viajes where XD_IDViaje = ${idViaje}`;
+		pusher.trigger('viajes', 'update-status', jsonResponse);
 
-        return _result.recordset[0];
-   
-    } catch (err) {
-    	console.log(err.message);    
-    	throw err;  
-        // ... error checks
-    }
+		res.send(`FINISH PUSHER VIAJE`);
+
+	} 
+	catch (err) {
+		console.log(err);
+		res.status(500).send({ message: err.message });
+	}
+}
+
+module.exports = {
+	triggerViaje
 }

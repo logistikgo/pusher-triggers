@@ -1,8 +1,8 @@
 module.exports = {
-	port:process.env.PORT || 3000,
-	
+    port: process.env.PORT || 3000,
+
     //DEBUG
-	appId: process.env.APPID_DEBUG,
+    appId: process.env.APPID_DEBUG,
     key: process.env.KEY_DEBUG,
     secret: process.env.SECRET_DEBUG,
     cluster: process.env.CLUSTER_DEBUG,
@@ -12,7 +12,7 @@ module.exports = {
     //serverDB: process.env.SERVERDB_DEBUG 
 
     //DEMO
-	//appId: process.env.APPID_DEMO,
+    //appId: process.env.APPID_DEMO,
     //key: process.env.KEY_DEMO,
     //secret: process.env.SECRET_DEMO,
     //cluster: process.env.CLUSTER_DEMO,
@@ -22,7 +22,7 @@ module.exports = {
     serverDB: process.env.SERVERDB_DEMO
 
     //PRODUCTION
-	//appId: process.env.APPID_PRODUCTION,
+    //appId: process.env.APPID_PRODUCTION,
     //key: process.env.KEY_PRODUCTION,
     //secret: process.env.SECRET_PRODUCTION,
     //cluster: process.env.CLUSTER_PRODUCTION,

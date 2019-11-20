@@ -1,17 +1,34 @@
+'use strict'
 
+const Pusher = require('../config/pusher');
+const PedidoDB = require('../bd/pedido');
+const UsuarioDB = require('../bd/usuario');
 
-async function getPedido (idPedido) {
-	try {
+async function triggerPedido(req, res) {
 
-       	var _pool = await new sql.ConnectionPool(config).connect()
+    let _idUsuario = parseInt(req.body.idusuario);
+    let _idPedido = req.body.idpedido;
 
-       	var _result = await _pool.query`select * from xd_pedidos where XD_IDPedido = ${idPedido}`;
+    let currentPedido = await PedidoDB.get(_idPedido);
+    let currentUsuario = await UsuarioDB.get(_idUsuario);
 
-        return _result.recordset[0];
+    console.log(currentUsuario);
 
-   
-    } catch (err) {
-    	console.log(err);      
-        // ... error checks
+    let jsonResponse = {
+        message: "update-evidencias",
+        idPedido: _idPedido,
+        delivery: currentPedido.Delivery,
+        idcliente: currentPedido.IDClienteFiscal,
+        usuario: {
+            id: _idUsuario, nombre: currentUsuario.Nombre
+        }
     }
+
+    pusher.trigger('pedidos', 'update-evidencias', jsonResponse);
+
+    res.send(`FINISH PUSHER`);
+}
+
+module.exports = {
+    triggerPedido
 }
