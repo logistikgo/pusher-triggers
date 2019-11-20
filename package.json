@@ -1,18 +1,19 @@
 {
   "name": "pusher_triggers",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "imorales@logistikgo.com",
-  "license": "MIT",
+  "author": "Ivan Morales, Zazil Ibarra",
+  "license": "MIT License",
   "dependencies": {
-    "express": "^4.16.3",
-    "mssql": "^4.1.0",
-    "nodemon": "^1.18.3",
-    "pusher": "^2.1.2"
+    "express": "^4.17.1",
+    "mssql": "^4.3.7",
+    "nodemon": "^1.19.4",
+    "pusher": "^2.2.2",
+    "tar": "^5.0.5"
   }
 }

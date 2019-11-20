@@ -1,15 +1,10 @@
 const app = require('./app');
-const config = require('./config');
+const config = require('./config/general');
 
-app.get('/',(req, res)=>{
-		res.send(`API NODE LOGISTIKGO VERSIÓN:${process.env.npm_package_version}`);
-	});
+app.get('/', (req, res) => {
+	res.send(`API PUSHER-XD VERSIÓN:${process.env.npm_package_version}`);
+});
 
-	app.listen(config.port, () => {
-		console.log(`API REST JALANDO EN:${config.port}`);
-})
-
-//Esau
-//Jorge
-//Uriel
-//Marco
+const server = app.listen(config.port, () => {
+	console.log(`Express running → PORT ${server.address().port}`);
+});
