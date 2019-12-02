@@ -3,7 +3,9 @@ const sql = require('mssql');
 
 async function get(idViaje) {
     try {
-        var _pool = await new sql.ConnectionPool(config).connect()
+        console.log(idViaje);
+
+        var _pool = await new sql.ConnectionPool(db.configDB).connect();
 
         var _result = await _pool.query`select * from xd_viajes where XD_IDViaje = ${idViaje}`;
 

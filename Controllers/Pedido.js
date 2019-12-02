@@ -5,7 +5,6 @@ const PedidoDB = require('../bd/pedido');
 const UsuarioDB = require('../bd/usuario');
 
 async function triggerPedido(req, res) {
-
     let _idUsuario = parseInt(req.body.idusuario);
     let _idPedido = req.body.idpedido;
 
