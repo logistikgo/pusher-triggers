@@ -1,6 +1,6 @@
 const config = require("./general");
 
-var configDB = {
+const configDB = {
     user: config.userDB,
     password: config.passwordDB,
     server: config.serverDB,

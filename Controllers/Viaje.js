@@ -5,7 +5,7 @@ const ViajeDB = require('../bd/viaje');
 const UsuarioDB = require('../bd/usuario');
 
 async function triggerViaje(req, res) {
-	let _idUsuario = parseInt(req.body.idusuario);
+	let _idUsuario = req.body.idusuario;
 	let _idViaje = req.body.idviaje;
 
 	try {
@@ -22,10 +22,8 @@ async function triggerViaje(req, res) {
 			}
 		}
 
-		pusher.trigger('viajes', 'update-status', jsonResponse);
-
-		res.send(`FINISH PUSHER VIAJE`);
-
+		Pusher.channel.trigger('viajes', 'update-status', jsonResponse);
+		res.status(200).send(`SUCCESS PUSHER VIAJE ${jsonResponse}`);
 	} 
 	catch (err) {
 		console.log(err);
