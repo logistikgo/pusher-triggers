@@ -23,7 +23,7 @@ async function triggerViaje(req, res) {
 		}
 
 		Pusher.channel.trigger('viajes', 'update-status', jsonResponse);
-		res.status(200).send(`SUCCESS PUSHER VIAJE ${jsonResponse}`);
+		res.status(200).send(`SUCCESS PUSHER VIAJE`);
 	} 
 	catch (err) {
 		console.log(err);

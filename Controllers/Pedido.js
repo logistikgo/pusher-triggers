@@ -5,13 +5,11 @@ const PedidoDB = require('../bd/pedido');
 const UsuarioDB = require('../bd/usuario');
 
 async function triggerPedido(req, res) {
-    let _idUsuario = parseInt(req.body.idusuario);
+    let _idUsuario = req.body.idusuario;
     let _idPedido = req.body.idpedido;
 
     let currentPedido = await PedidoDB.get(_idPedido);
     let currentUsuario = await UsuarioDB.get(_idUsuario);
-
-    console.log(currentUsuario);
 
     let jsonResponse = {
         message: "update-evidencias",
@@ -23,9 +21,8 @@ async function triggerPedido(req, res) {
         }
     }
 
-    pusher.trigger('pedidos', 'update-evidencias', jsonResponse);
-
-    res.send(`FINISH PUSHER`);
+    Pusher.channel.trigger('pedidos', 'update-evidencias', jsonResponse);
+    res.status(200).send(`SUCCESS PUSHER PEDIDO`);
 }
 
 module.exports = {

@@ -11,7 +11,7 @@ async function get(idViaje) {
             throw err;
         });
 
-    return result;
+    return result.recordset[0];
 }
 
 module.exports = {

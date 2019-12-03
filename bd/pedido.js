@@ -2,16 +2,16 @@ const db = require('../config/db');
 const sql = require('mssql');
 
 async function get(idPedido) {
-    try {
-        var _pool = await new sql.ConnectionPool(db.configDB).connect()
+    var result = await new sql.ConnectionPool(db.configDB).connect()
+        .then(pool => {
+            return pool.query`SELECT * FROM xd_pedidos WHERE XD_IDPedido = ${idPedido}`
+        })
+        .catch(err => {
+            console.log(err.message);
+            throw err;
+        });
 
-        var _result = await _pool.query`select * from xd_pedidos where XD_IDPedido = ${idPedido}`;
-
-        return _result.recordset[0];
-    }
-    catch (err) {
-        console.log(err);
-    }
+    return result.recordset[0];
 }
 
 module.exports = {
